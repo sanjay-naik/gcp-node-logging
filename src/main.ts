@@ -1,11 +1,12 @@
 import express from 'express';
-
+import dotenv from 'dotenv';
 import winston from 'winston';
 
 // Imports the Google Cloud client library for Winston
 import { LoggingWinston } from '@google-cloud/logging-winston';
 
 const loggingWinston = new LoggingWinston();
+dotenv.config();
 
 const logger = winston.createLogger({
   level: 'info',
@@ -15,7 +16,8 @@ const logger = winston.createLogger({
   ],
 });
 
-
+console.log('process.env');
+console.log(process.env.HOST);
 
 const host = process.env.HOST ?? 'localhost';
 const port = process.env.PORT ? Number(process.env.PORT) : 8080;
